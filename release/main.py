@@ -3,17 +3,19 @@ import sqlite3
 
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QWidget
 from PyQt6 import uic
+from UI.main import Ui_MainWindow
+from UI.addEditCoffeeForm import Ui_Form
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
+        self.setupUi(self)
         self.pushButton.clicked.connect(self.loadTable)
         self.addButton.clicked.connect(self.openEditor)
 
     def loadTable(self):
-        con = sqlite3.connect('coffee.sqlite')
+        con = sqlite3.connect('data/coffee.sqlite')
         cur = con.cursor()
         result = cur.execute("""SELECT Items.id, Name.coffeename, Roasting.degree,
         ground, taste, price, volume FROM Items
@@ -33,11 +35,11 @@ class MyWidget(QMainWindow):
         self.editorForm = EditorForm()
         self.editorForm.show()
 
-class EditorForm(QWidget):
+class EditorForm(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi('addEditCoffeeForm.ui', self)
-        self.con = sqlite3.connect('coffee.sqlite')
+        self.setupUi(self)
+        self.con = sqlite3.connect('data/coffee.sqlite')
         self.cur = self.con.cursor()
         self.okButton.clicked.connect(self.addData)
 
