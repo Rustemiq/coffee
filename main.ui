@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>580</width>
-    <height>320</height>
+    <height>333</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,6 +35,19 @@
       <width>431</width>
       <height>211</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addButton">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>260</y>
+      <width>121</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Добавить в БД</string>
     </property>
    </widget>
   </widget>
